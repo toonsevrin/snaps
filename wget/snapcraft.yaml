@@ -1,0 +1,24 @@
+name: wget
+version: 0.0.1
+summary: retrieves files from the web
+base: core18
+description: |
+    Wget is a network utility to retrieve files from the web
+    using HTTP(S) and FTP, the two most widely used internet
+    protocols. It works non-interactively, so it will work in
+    the background, after having logged off. The program supports
+    recursive retrieval of web-authoring pages as well as FTP
+    sites -- you can use Wget to make mirrors of archives and
+    home pages or to travel the web like a WWW robot.
+confinement: strict
+grade: stable
+
+apps:
+    wget:
+        command: usr/bin/wget --config=$HOME/.wgetrc
+        plugs: [home, network-bind] 
+
+parts:
+    wget:
+        plugin: nil
+        stage-packages: [wget]
