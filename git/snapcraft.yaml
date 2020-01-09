@@ -1,0 +1,30 @@
+name: git
+base: core18
+version: 0.0.1
+summary: git command
+description: git command
+
+apps:
+  git:
+    command: bin/git
+    plugs: [network, home]
+  git-lfs:
+    command: bin/git-lfs
+    plugs: [network, home]
+
+parts:
+    git:
+      plugin: autotools
+      source: https://github.com/git/git
+      source-type: git
+      build-packages: [libssl-dev, libcurl4-openssl-dev,zlib1g ]
+      stage-packages: [git-lfs]
+      filesets:
+        git:
+        - bin/*
+        - libexec/*
+        - lib/*
+        - share/*
+        - usr/local/*
+      stage:
+        - $git
